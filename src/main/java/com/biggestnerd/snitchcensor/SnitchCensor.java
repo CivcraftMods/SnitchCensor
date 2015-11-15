@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 
-@Mod(modid="snitchcensor", name="Snitch Censor", version="v2.0", acceptedMinecraftVersions="[1.8]")
+@Mod(modid="snitchcensor", name="Snitch Censor", version="v2.1")
 public class SnitchCensor
 {
   Minecraft mc;
@@ -28,7 +28,7 @@ public class SnitchCensor
   public void preInit(FMLPreInitializationEvent event)
   {
     this.mc = Minecraft.getMinecraft();
-    this.toggle = new KeyBinding("Toggle Censor", 37, "Snitch Censor");
+    this.toggle = new KeyBinding("Toggle Censor", Keyboard.KEY_I, "Snitch Censor");
     ClientRegistry.registerKeyBinding(this.toggle);
     MinecraftForge.EVENT_BUS.register(this);
     FMLCommonHandler.instance().bus().register(this);
@@ -68,7 +68,7 @@ public class SnitchCensor
     if (this.toggle.isKeyDown())
     {
       this.censor = (!this.censor);
-      this.mc.thePlayer.addChatMessage(new ChatComponentText(formatString(EnumChatFormatting.DARK_AQUA, "[SnitchCensor]") + formatString(EnumChatFormatting.WHITE, new StringBuilder().append(" is now ").append(this.censor ? "enabled" : "disabled").toString())));
+      this.mc.thePlayer.addChatMessage(new ChatComponentText(formatString(EnumChatFormatting.DARK_AQUA, "[SnitchCensor]") + formatString(EnumChatFormatting.GRAY, new StringBuilder().append(" is now ").append(this.censor ? "enabled" : "disabled").toString())));
     }
   }
   
